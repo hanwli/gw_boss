@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "gw_boss",
+  "description": "工位招聘",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}
