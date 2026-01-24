@@ -16,6 +16,7 @@
     </scroll-view>
     <nut-popup
     v-model:visible="showDetail"
+    safe-area-inset-bottom
     position="bottom"
     :style="{ height: '85%' }"
     closeable

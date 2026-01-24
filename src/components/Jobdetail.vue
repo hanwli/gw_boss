@@ -2,31 +2,67 @@
 <template>
   <view class="job-details" v-if="job">
     <!-- 标题区 -->
-    <view class="header">
+     <nut-cell size="large" style="padding-top: 20rpx;">
+        <template #title>
+            <span style="color: red;">{{ job.title }}</span>
+        </template>
+        <template #desc>
+            <span style="color: red;">{{ job.salary }}</span>
+        </template>
+     </nut-cell>
+    <!-- <view class="header">
         
       <view class="title">{{ job.title }}</view>
       <view class="salary">{{ job.salary }}</view>
-    </view>
+    </view> -->
 
     <!-- 基本信息 -->
     <view class="basic-info">
-      <nut-cell title="公司" :desc="job.company" />
-      <nut-cell title="工作地点" :desc="`${job.province} ${job.city} ${job.district}`" />
-      <nut-cell title="职位类型" :desc="job.jobType" />
-      <nut-cell title="发布时间" :desc="job.publishTime" />
+      <nut-row :gutter="10">
+        <nut-col :span="12">
+            <nut-divider>公司</nut-divider>
+            <view style="text-align: center;">{{ job.company }}</view>
+        </nut-col>
+        <nut-col :span="12">
+            <nut-divider>地点</nut-divider>
+            <view style="text-align: center;">{{ `${job.province} ${job.city} ${job.district}` }}</view>
+        </nut-col>
+      </nut-row>
+        <nut-row :gutter="10">
+            <nut-col :span="12">
+                <nut-divider>职位类型</nut-divider>
+                <view style="text-align: center;">{{ job.jobType }}</view>
+            </nut-col>
+            <nut-col :span="12">
+                <nut-divider>发布时间</nut-divider>
+                <view style="text-align: center;">{{ job.publishTime }}</view>
+            </nut-col>
+        </nut-row>
+      <!-- <nut-cell title="公司" :desc="job.company" /> -->
+      <!-- <nut-cell title="工作地点" :desc="`${job.province} ${job.city} ${job.district}`" /> -->
+      <!-- <nut-cell title="职位类型" :desc="job.jobType" /> -->
+      <!-- <nut-cell title="发布时间" :desc="job.publishTime" /> -->
     </view>
 
     <!-- 要求 -->
-    <view class="section">
+     <nut-col :span="24">
+        <nut-divider>任职要求</nut-divider>
+        <view class="content">{{ job.requirements || '暂无详细要求' }}</view>
+     </nut-col>
+    <!-- <view class="section">
       <view class="section-title">任职要求</view>
       <view class="content">{{ job.requirements || '暂无详细要求' }}</view>
-    </view>
+    </view> -->
 
     <!-- 描述 -->
-    <view class="section">
+     <nut-col :span="24">
+        <nut-divider>职位描述</nut-divider>
+        <view class="content">{{ job.description || '暂无职位描述' }}</view>
+    </nut-col>
+    <!-- <view class="section">
       <view class="section-title">职位描述</view>
       <view class="content">{{ job.description || '暂无职位描述' }}</view>
-    </view>
+    </view> -->
 
     <!-- 底部操作按钮 -->
     <view class="footer-actions">
