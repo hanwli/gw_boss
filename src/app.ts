@@ -4,6 +4,7 @@ import { Button,Popup,Tabbar, TabbarItem } from "@nutui/nutui-taro";
 import { List, Cell } from '@nutui/nutui-taro'
 import { IconFont } from '@nutui/icons-vue-taro'
 import { Picker} from '@nutui/nutui-taro'
+import { Grid, GridItem } from '@nutui/nutui-taro'
 import './app.scss'
 
 const App = createApp({
@@ -20,4 +21,6 @@ App.use(List)
 App.use(Cell)
 App.use(IconFont)
 App.use(Picker)
+App.use(Grid)
+App.use(GridItem)
 export default App

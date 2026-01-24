@@ -45,13 +45,13 @@ const props = defineProps<{
   job: JobInfo
 }>()
 
-const emit = defineEmits<{
-  (e: 'click'): void
-  // 如果需要单独点击收藏，可再加 @collect 事件
+const emits = defineEmits<{
+  (e: 'click', job: JobInfo): void
 }>()
 
+
 const handleClick = () => {
-  emit('click')
+  emits('click', props.job )
 }
 </script>
 
