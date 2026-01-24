@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { Button,Popup,Tabbar, TabbarItem } from "@nutui/nutui-taro";
+import { List } from '@nutui/nutui-taro'
 import './app.scss'
 
 const App = createApp({
