@@ -10,6 +10,9 @@ const mockJobs: JobInfo[] = [
     company: '北京市朝阳区疾控中心',
     location: '北京市朝阳区',
     salary: '15-25K',
+    province: '北京',
+    city: '北京',
+    district: '朝阳区',
     region: '北京',
     publishTime: '2026-01-17',
     isCollected: false,
@@ -24,6 +27,9 @@ const mockJobs: JobInfo[] = [
     company: '上海市浦东新区卫健委',
     location: '上海市浦东新区',
     salary: '12-20K',
+    province: '上海',
+    city: '上海',
+    district: '浦东新区',
     region: '上海',
     publishTime: '2026-01-16',
     isCollected: false,
@@ -38,6 +44,9 @@ const mockJobs: JobInfo[] = [
     company: '广州市天河区医院',
     location: '广州市天河区',
     salary: '10-18K',
+    province: '广东',
+    city: '广州',
+    district: '天河区',
     region: '广州',
     publishTime: '2026-01-15',
     isCollected: false,
@@ -52,6 +61,9 @@ const mockJobs: JobInfo[] = [
     company: '深圳市南山区疾控中心',
     location: '深圳市南山区',
     salary: '13-22K',
+    province: '广东',
+    city: '深圳',
+    district: '南山区',
     region: '深圳',
     publishTime: '2026-01-14',
     isCollected: false,
@@ -66,6 +78,9 @@ const mockJobs: JobInfo[] = [
     company: '杭州市西湖区社区卫生服务中心',
     location: '杭州市西湖区',
     salary: '9-15K',
+    province: '浙江',
+    city: '杭州',
+    district: '西湖区',
     region: '杭州',
     publishTime: '2026-01-13',
     isCollected: false,
@@ -80,6 +95,9 @@ const mockJobs: JobInfo[] = [
     company: '北京市海淀区卫健委',
     location: '北京市海淀区',
     salary: '14-24K',
+    province: '北京',
+    city: '北京',
+    district: '海淀区',
     region: '北京',
     publishTime: '2026-01-12',
     isCollected: false,
@@ -101,7 +119,7 @@ const regions: RegionOption[] = [
 
 export const useJobStore = defineStore('job', () => {
   const jobs = ref<JobInfo[]>([...mockJobs])
-  const selectedRegion = ref<string>('all')
+  const selectedRegion = ref<string[]>([])
 
   // 未结束的工作（用于最新招聘）
   const activeJobs = computed(() => {
@@ -120,19 +138,53 @@ export const useJobStore = defineStore('job', () => {
     )
   })
 
+  const setSelectedRegion = (region: string) => {
+    let regions = region.split(' / ')
+    // 去掉 "全部"
+    regions = regions.filter(r => r !== '全部')
+    selectedRegion.value = regions
+  }
+
   // 招聘库 - 显示所有（包括已结束的）
-  const filteredJobs = computed(() => {
-    const regionFiltered = selectedRegion.value === 'all' 
-      ? jobs.value 
-      : jobs.value.filter(job => job.region === selectedRegion.value)
-    return regionFiltered
-  })
+  // TODO: 后期肯定是连接后端接口，进行筛选
+  const filteredActiveJobs = () => {
+    let regions_len = selectedRegion.value.length
+    if (regions_len === 0) {
+      return activeJobs.value
+    }
+    else if (regions_len === 1) {
+      return activeJobs.value.filter(job => job.province === selectedRegion.value[0])
+    }
+    else if (regions_len === 2) {
+      return activeJobs.value.filter(job => job.province === selectedRegion.value[0] && job.city === selectedRegion.value[1])
+    }
+    else if (regions_len === 3) {
+      return activeJobs.value.filter(job => job.province === selectedRegion.value[0] && job.city === selectedRegion.value[1] && job.district === selectedRegion.value[2])
+    }
+    return activeJobs.value
+  }
+  const filteredAllJobs = () => {
+    let regions_len = selectedRegion.value.length
+    if (regions_len === 0) {
+      return jobs.value
+    }
+    else if (regions_len === 1) {
+      return jobs.value.filter(job => job.province === selectedRegion.value[0])
+    }
+    else if (regions_len === 2) {
+      return jobs.value.filter(job => job.province === selectedRegion.value[0] && job.city === selectedRegion.value[1])
+    }
+    else if (regions_len === 3) {
+      return jobs.value.filter(job => job.province === selectedRegion.value[0] && job.city === selectedRegion.value[1] && job.district === selectedRegion.value[2])
+    }
+    return jobs.value
+  }
 
   const regionOptions = computed(() => regions)
 
-  function setSelectedRegion(region: string) {
-    selectedRegion.value = region
-  }
+  // function setSelectedRegion(region: string) {
+  //   selectedRegion.value = region
+  // }
 
   function toggleCollect(jobId: string) {
     const job = jobs.value.find(j => j.id === jobId)
@@ -149,11 +201,12 @@ export const useJobStore = defineStore('job', () => {
     jobs,
     activeJobs,
     endedJobs,
-    filteredJobs,
+    filteredActiveJobs,
+    filteredAllJobs,
+    setSelectedRegion,
     latestJobs,
     regionOptions,
     selectedRegion,
-    setSelectedRegion,
     toggleCollect,
     getJobById
   }

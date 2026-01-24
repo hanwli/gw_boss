@@ -8,8 +8,12 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Jobcard: typeof import('./src/components/Jobcard.vue')['default']
+    NutCell: typeof import('@nutui/nutui-taro')['Cell']
+    NutPicker: typeof import('@nutui/nutui-taro')['Picker']
+    NutPopup: typeof import('@nutui/nutui-taro')['Popup']
     NutTabbar: typeof import('@nutui/nutui-taro')['Tabbar']
     NutTabbarItem: typeof import('@nutui/nutui-taro')['TabbarItem']
+    NutTag: typeof import('@nutui/nutui-taro')['Tag']
     Tabbar: typeof import('./src/components/Tabbar.vue')['default']
   }
 }

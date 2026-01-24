@@ -4,6 +4,9 @@ export interface JobInfo {
   company: string
   location: string
   salary: string
+  province: string
+  city: string
+  district: string
   region: string
   publishTime: string
   isCollected: boolean

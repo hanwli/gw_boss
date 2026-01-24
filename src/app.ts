@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { Button,Popup,Tabbar, TabbarItem } from "@nutui/nutui-taro";
-import { List } from '@nutui/nutui-taro'
+import { List, Cell } from '@nutui/nutui-taro'
+import { IconFont } from '@nutui/icons-vue-taro'
+import { Picker} from '@nutui/nutui-taro'
 import './app.scss'
 
 const App = createApp({
@@ -15,4 +17,7 @@ App.use(Popup)
 App.use(Tabbar)
 App.use(TabbarItem)
 App.use(List)
+App.use(Cell)
+App.use(IconFont)
+App.use(Picker)
 export default App
