@@ -6,19 +6,10 @@
 </template>
 
 <script lang="ts" setup>
-import { h, ref } from 'vue'
+import { h, ref ,onMounted} from 'vue'
 import { Home, Category, My } from '@nutui/icons-vue-taro'
 import Taro from '@tarojs/taro'
 
-const pages = Taro.getCurrentPages()
-const page = pages[pages.length-1]
-
-const path = page.route
-const parts = path.split("/"); // 使用 "/" 分割字符串
-const target = parts[1]; // 获取第三个部分（索引为2）
-console.log('target', target)
-
-const active = target
 const List = [
   {
     title: 'Home',
@@ -39,6 +30,17 @@ const List = [
     path: '/pages/user/index'
   }
 ]
+const active = ref('Home')
+
+onMounted(() => {
+  const pages = Taro.getCurrentPages()
+  const currentPage = pages[pages.length - 1]
+  const route = currentPage.route || currentPage.__route__ // 兼容不同版本
+  if (route.includes('latest')) active.value = 'home'
+  else if (route.includes('jobs')) active.value = 'category'
+  else if (route.includes('user')) active.value = 'my'
+
+})
 
 const tabSwitch = (item: Record<string, unknown>, name: string) => {
     // 找到List里面name对应的path

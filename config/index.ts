@@ -67,6 +67,8 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
         chain.plugin('unplugin-vue-components').use(Components({
           resolvers: [NutUIResolver({taro: true})]
         }))
+        chain.resolve.alias
+        .set('@', require('path').resolve(__dirname, '..', 'src'))
       }
     },
     h5: {

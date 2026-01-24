@@ -14,4 +14,5 @@ App.use(Button)
 App.use(Popup)
 App.use(Tabbar)
 App.use(TabbarItem)
+App.use(List)
 export default App

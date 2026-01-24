@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Jobcard: typeof import('./src/components/Jobcard.vue')['default']
     NutTabbar: typeof import('@nutui/nutui-taro')['Tabbar']
     NutTabbarItem: typeof import('@nutui/nutui-taro')['TabbarItem']
     Tabbar: typeof import('./src/components/Tabbar.vue')['default']
