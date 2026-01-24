@@ -147,8 +147,9 @@ export const useJobStore = defineStore('job', () => {
 
   // 招聘库 - 显示所有（包括已结束的）
   // TODO: 后期肯定是连接后端接口，进行筛选
-  const filteredActiveJobs = () => {
+  const filteredActiveJobs = computed(() => {
     let regions_len = selectedRegion.value.length
+    console.log('selectedRegion:', selectedRegion)
     if (regions_len === 0) {
       return activeJobs.value
     }
@@ -162,8 +163,8 @@ export const useJobStore = defineStore('job', () => {
       return activeJobs.value.filter(job => job.province === selectedRegion.value[0] && job.city === selectedRegion.value[1] && job.district === selectedRegion.value[2])
     }
     return activeJobs.value
-  }
-  const filteredAllJobs = () => {
+  })
+  const filteredAllJobs = computed(() => {
     let regions_len = selectedRegion.value.length
     if (regions_len === 0) {
       return jobs.value
@@ -178,7 +179,7 @@ export const useJobStore = defineStore('job', () => {
       return jobs.value.filter(job => job.province === selectedRegion.value[0] && job.city === selectedRegion.value[1] && job.district === selectedRegion.value[2])
     }
     return jobs.value
-  }
+  })
 
   const regionOptions = computed(() => regions)
 

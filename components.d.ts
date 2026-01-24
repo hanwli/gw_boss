@@ -14,6 +14,7 @@ declare module 'vue' {
     NutTabbar: typeof import('@nutui/nutui-taro')['Tabbar']
     NutTabbarItem: typeof import('@nutui/nutui-taro')['TabbarItem']
     NutTag: typeof import('@nutui/nutui-taro')['Tag']
+    Positionpick: typeof import('./src/components/Positionpick.vue')['default']
     Tabbar: typeof import('./src/components/Tabbar.vue')['default']
   }
 }
