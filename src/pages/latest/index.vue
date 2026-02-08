@@ -19,8 +19,6 @@
     safe-area-inset-bottom
     position="bottom"
     :style="{ height: '85%' }"
-    closeable
-    close-icon-position="top-right"
     @close="showDetail = false"
   >
     <Jobdetail 
