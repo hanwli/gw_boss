@@ -23,7 +23,7 @@
   >
     <Jobdetail 
       :job="selectedJob" 
-      @close="showDetail = false"
+      @close="showDetail = FALSE"
     />
   </nut-popup>
     <Tabbar />

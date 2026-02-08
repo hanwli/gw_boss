@@ -38,7 +38,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
 import type { JobInfo } from '@/types/job'  // 你的接口文件
 
 const props = defineProps<{

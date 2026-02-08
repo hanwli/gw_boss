@@ -1,12 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { Button,Popup,Tabbar, TabbarItem } from "@nutui/nutui-taro";
-import { List, Cell } from '@nutui/nutui-taro'
+import { Button,Popup,Tabbar, TabbarItem, Picker, List, Cell, Grid, GridItem, Row, Col, Divider } from "@nutui/nutui-taro";
 import { IconFont } from '@nutui/icons-vue-taro'
-import { Picker} from '@nutui/nutui-taro'
-import { Grid, GridItem } from '@nutui/nutui-taro'
-import { Row, Col } from '@nutui/nutui-taro'
-import {Divider} from '@nutui/nutui-taro'
 import './app.scss'
 
 const App = createApp({
